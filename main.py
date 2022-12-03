@@ -3,23 +3,29 @@ from PIL import Image,ImageTk
 
 root=Tk()
 root.geometry("1000x600")
+root.minsize(1000,600)
+root.maxsize(1000,600)
 
-seed_img = Image.open("./src/test.jpg")
 l=Label(root,font="bold")
 l.pack()
 
 x=1
 
-show_img = seed_img.rotate(0.1*x)
-img1=ImageTk.PhotoImage(show_img)
+seed_img = Image.open("./src/test.jpg")
+seed_img = seed_img.rotate(0.1)
+crop_img = seed_img #.crop((500,500,500,500))
+img1=ImageTk.PhotoImage(crop_img)
 
 def move():
     global x
     global seed_img
+    global crop_img
     global img1
 
-    show_img = seed_img.rotate(1*x)
-    img1=ImageTk.PhotoImage(show_img)
+    seed_img = seed_img.rotate(0.1*x)
+    crop_img = seed_img #.crop((500,500,500,500))
+    img1=ImageTk.PhotoImage(crop_img)
+
     
     l.config(image=img1)
 
