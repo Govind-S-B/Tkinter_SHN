@@ -20,7 +20,7 @@ return_img = ImageTk.PhotoImage(Image.open(f"./src/return.png"))
 canvas = Canvas(root, width=600, height=400, bg='green')
 canvas.pack(anchor=tk.CENTER, expand=True)
 
-canvas.create_image(40, 30, image = return_img)
+canvas.create_image(30, 30, image = return_img)
 canvas.tag_bind(return_img, "<Button-1>", prevPage)
 
 conn = sq.connect('report.db')
