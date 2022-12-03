@@ -43,8 +43,8 @@ path = "./cards/"
 if not os.path.exists(path):
     os.makedirs(path)
 
-c = 1
-r = 1
+column = 1
+row = 1
 for i in result:
 
     bg = Image.open("./src/" + i[2] + ".png")
@@ -61,12 +61,12 @@ for i in result:
     photo = PhotoImage(file="./cards/" + i[0]+".png")
     label = Label(canvas, image=photo)
     label.image = photo
-    label.grid(column=c, row=r, sticky=S)
+    label.grid(column=column, row=row, sticky=S)
 
-    c += 1
-    if c > 4:
-        r += 1
-        c = 1
+    column += 1
+    if column > 4:
+        row += 1
+        row = 1
 
     os.remove("./cards/" + i[0]+".png")
 
