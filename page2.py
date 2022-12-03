@@ -27,6 +27,13 @@ query = """
 cursor.execute(query)
 result = cursor.fetchall()
 
+font1 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 20)
+font2 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 15)
+
+path = "./cards/"
+if not os.path.exists(path):
+    os.makedirs(path)
+
 c = 1
 r = 1
 for i in result:
