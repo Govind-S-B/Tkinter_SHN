@@ -8,20 +8,23 @@ root = Tk()
 root.geometry("1000x600")
 root.minsize(600, 400)
 
+def prevPage():
+    root.destroy()
+    import main
+
+font1 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 20)
+font2 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 15)
 canvas = Canvas(root, width=600, height=400, bg='white')
 canvas.pack(anchor=tk.CENTER, expand=True)
 
 conn = sq.connect('report.db')
-
 cursor = conn.cursor()
-
 query = """
         SELECT *
         FROM REPORT
         ORDER BY DATE DESC
 """
 cursor.execute(query)
-
 result = cursor.fetchall()
 
 font1 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 20)
@@ -54,6 +57,5 @@ for i in result:
         c = 1
 
     os.remove("./cards/" + i[0]+".png")
-
 
 mainloop()
