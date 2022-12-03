@@ -173,6 +173,8 @@ angry_emoji_big = ImageTk.PhotoImage(Image.open(f"./src/angry_big.png"))
 # Icons
 calendar_icon = ImageTk.PhotoImage(Image.open(f"./src/calendar.png"))
 
+input_bg = ImageTk.PhotoImage(Image.open(f"./src/text_field.png"))
+
 canvas = Canvas(root, width=1000, height=700)
 canvas.pack(fill="both", expand=True)
 canvas.create_image(0, 0, image=final_frame, anchor="nw")
@@ -233,6 +235,8 @@ def move():
     canvas.tag_bind(cal_button, "<Button-1>", cal_icon_click)
     # submit_button = canvas.create_text(550, 350, text="Submit", fill="green",)
 
+    test = canvas.create_image(500, 280, image=input_bg)
+
     frame_count+=1
     root.after(int(1000/fps), move)
 
@@ -246,6 +250,7 @@ style = ttk.Style()
  
 style.configure('TButton', font = ('calibri', 20, 'bold'), borderwidth = '4')
 style.map('TButton', foreground = [('active', '!disabled', 'green')], background = [('active', 'black')])
+
 
 btn = Button(root, text='Submit', width=10, height=1, font="havletica 11", background="#255EC9", foreground="white" ,command=submit)
 btn.place(x=450, y=350)
