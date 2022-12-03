@@ -146,7 +146,7 @@ def cal_icon_click(event):
     root.destroy()
     import page2
 
-num = random.randint(1,3)
+num = random.randint(1,8)
 print(num)
 seed_img = Image.open(f"./src/seed_image_{num}.png") # seed image is just a pregenerated mesh gradient with blur and noise added
 

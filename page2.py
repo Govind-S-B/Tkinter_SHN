@@ -64,7 +64,4 @@ for i in result:
 
     os.remove("./cards/" + i[0]+".png")
 
-canvas.create_image(40, 30, image = return_img)
-canvas.tag_bind(return_img, "<Button-1>", prevPage)
-
 mainloop()
