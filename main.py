@@ -75,7 +75,7 @@ def confused_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 2")
+    print("Button clicked: 4")
     selected_mood = "confused"
 
 
@@ -111,7 +111,7 @@ def star_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 4")
+    print("Button clicked: 2")
     selected_mood = "star"
 
 
@@ -243,7 +243,7 @@ def move():
 
 string = StringVar()
 string.set('Enter input')
-e1 = Entry(canvas, background="white", borderwidth=3, textvariable=string, width=40, bd=1)
+e1 = Entry(canvas, background="white", borderwidth=3, textvariable=string, width=38, bd=0, font="havletica 12")
 canvas.create_window(500, 280, window=e1)
 
 # Create style Object
