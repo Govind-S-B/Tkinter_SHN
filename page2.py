@@ -3,6 +3,7 @@ import tkinter as tk
 import sqlite3 as sq
 from PIL import Image, ImageFont, ImageDraw, ImageTk
 import os
+import textwrap
 
 root = Tk()
 root.geometry("1000x600")
@@ -49,7 +50,10 @@ for i in result:
     date_ = i[0].split("-")
     date = date_[2]+"-"+date_[1]+"-"+date_[0]
     draw.text((75, 30), date, fill="black", anchor="ms", font=font1)
-    draw.text((50, 60), i[1], fill="white", anchor="ms", font=font2)
+    offset = 60
+    for line in textwrap.wrap(i[1], width=15):
+        draw.text((80, offset), line, font=font2, fill='white', anchor="ms")
+        offset += 18
     bg.save("./cards/" + i[0]+".png")
 
     photo = PhotoImage(file="./cards/" + i[0]+".png")
