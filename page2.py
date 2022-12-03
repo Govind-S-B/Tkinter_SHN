@@ -26,8 +26,8 @@ cursor.execute(query)
 
 result = cursor.fetchall()
 
-font1 = ImageFont.truetype("Uni Sans Heavy.otf", 20)
-font2 = ImageFont.truetype("Uni Sans Heavy.otf", 15)
+font1 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 20)
+font2 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 15)
 
 
 c = 1
