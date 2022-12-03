@@ -27,8 +27,10 @@ root.title("Mood Tracker")
 root.geometry("1000x600")
 root.minsize(1000, 600)
 root.maxsize(1000, 600)  # based on crop image size
+canvas = Canvas(root, width=1000, height=600)
+# canvas.pack(fill="both", expand=True)
 # root.eval('tk::PlaceWindow . center')
-qstn_font = tkFont.Font(family="havletica", size=30, weight="bold")
+qstn_font = tkFont.Font(family="helvetica", size=30, weight="bold")
 
 l = Label(root)
 l.pack()
@@ -47,7 +49,7 @@ angry_state = 0
 
 def happy_button_clicked(event):
     global happy_state, confused_state, sad_state, star_state, angry_state, selected_mood
-    print("Button clicked: 1")
+    # print("Button clicked: 1")
     if happy_state == 0:
         happy_state = 1
         confused_state = 0
@@ -78,7 +80,7 @@ def confused_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 4")
+    # print("Button clicked: 4")
     selected_mood = "confused"
 
 
@@ -96,7 +98,7 @@ def sad_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 3")
+    # print("Button clicked: 3")
     selected_mood = "sad"
 
 
@@ -114,7 +116,7 @@ def star_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 2")
+    # print("Button clicked: 2")
     selected_mood = "star"
 
 
@@ -132,23 +134,27 @@ def angry_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 5")
+    # print("Button clicked: 5")
     selected_mood = "angry"
 
 
 def submit():
     global description, selected_mood
     description = e1.get()
-    print(selected_mood)
-    print(description)
+    # print(selected_mood)
+    # print(description)
     today = date.today()
-    print(today)
+    # print(today)
     try:
         conn.execute(
             f"INSERT INTO REPORT VALUES ('{today}', '{description}', '{mood[selected_mood]}');")
         conn.commit()
     except:
-        print("Already logged today's mood.")
+        font = tkFont.Font(family="helvetica", size=15)
+        canvas.create_text(
+            500, 395, text="Already logged today's mood!", font=font, fill='white')
+        # Label(canvas, text="Already logged today's mood", font=qstn_font).place(
+        #     relx=0.5, rely=0.7, anchor='center')
 
 
 def cal_icon_click(event):
@@ -157,7 +163,7 @@ def cal_icon_click(event):
 
 
 num = random.randint(1, 8)
-print(num)
+# print(num)
 # seed image is just a pregenerated mesh gradient with blur and noise added
 seed_img = Image.open(f"./src/seed_image_{num}.png")
 
