@@ -75,7 +75,7 @@ def confused_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 2")
+    print("Button clicked: 4")
     selected_mood = "confused"
 
 
@@ -111,7 +111,7 @@ def star_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 4")
+    print("Button clicked: 2")
     selected_mood = "star"
 
 
@@ -144,12 +144,7 @@ def submit():
 
 def cal_icon_click(event):
     root.destroy()
-    import page2test
-
-## to put inside 2nd page py file
-# def prevPage():
-#     root.destroy()
-#     import page1
+    import page2
 
 num = random.randint(1,3)
 print(num)
@@ -243,7 +238,7 @@ def move():
 
 string = StringVar()
 string.set('Enter input')
-e1 = Entry(canvas, background="white", borderwidth=3, textvariable=string, width=40, bd=1)
+e1 = Entry(canvas, background="white", borderwidth=3, textvariable=string, width=38, bd=0, font="havletica 12")
 canvas.create_window(500, 280, window=e1)
 
 # Create style Object
