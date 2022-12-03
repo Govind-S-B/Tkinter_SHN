@@ -85,7 +85,7 @@ def angry_button_clicked(event):
     print("Button clicked: 5")
     selected_mood = "angry"
 
-def submit(event):
+def submit():
     global description, selected_mood
     description = e1.get()
     print(selected_mood)
