@@ -35,10 +35,10 @@ rotate_angle_per_frame = 1
 fps = 60
 
 # Button Click Functions
-happy_state = 0
+happy_state = 1
 def happy_button_clicked(event):
     global happy_state, selected_mood
-    print("Button clicked: 1")
+    print("Button clicked: 1, State: ",happy_state)
     if happy_state == 0:
         happy_state = 1
     else:
@@ -52,7 +52,7 @@ def confused_button_clicked(event):
         confused_state = 1
     else:
         confused_state = 0
-    print("Button clicked: 2")
+    print("Button clicked: 2, State: ",confused_state)
     selected_mood = "confused"
 
 sad_state = 0
@@ -62,7 +62,7 @@ def sad_button_clicked(event):
         sad_state = 1
     else:
         sad_state = 0
-    print("Button clicked: 3")
+    print("Button clicked: 3, State: ",sad_state)
     selected_mood = "sad"
 
 star_state = 0
@@ -72,7 +72,7 @@ def star_button_clicked(event):
         star_state = 1
     else:
         star_state = 0
-    print("Button clicked: 4")
+    print("Button clicked: 4, State: ",star_state)
     selected_mood = "star"
 
 angry_state = 0
@@ -82,18 +82,29 @@ def angry_button_clicked(event):
         angry_state = 1
     else:
         angry_state = 0
-    print("Button clicked: 5")
+    print("Button clicked: 5, State: ",angry_state)
     selected_mood = "angry"
 
 def submit():
     global description, selected_mood
     description = e1.get()
-    print(selected_mood)
-    print(description)
     today = date.today()
     print(today)
-    conn.execute(f"INSERT INTO REPORT VALUES ('{today}', '{description}', '{selected_mood}');")
+    try:
+        print(selected_mood)
+    except NameError:
+        print("Select the mood")
+        return
+    if description == "":
+        print("Write the description")
+        return
+    print(description)
+    try:
+        conn.execute(f"INSERT INTO REPORT VALUES ('{today}', '{description}', '{selected_mood}');")
+    except sq.IntegrityError:
+        conn.execute(f"UPDATE REPORT SET DESCRIPTION = '{description}', MOOD = '{selected_mood}' WHERE DATE = '{today}';")
     conn.commit()
+    print("Inserted to db")
 
 def cal_icon_click(event):
     root.destroy()
@@ -164,7 +175,7 @@ def move():
 
     # Emoji Buttons
     left_mar = 350
-    if happy_state == 0:
+    if happy_state == 1:
         happy_button = canvas.create_image(left_mar, 225, image=happy_emoji)
     else:
         happy_button = canvas.create_image(left_mar, 225, image=happy_emoji_big)
