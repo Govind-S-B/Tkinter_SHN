@@ -66,7 +66,7 @@ for i in result:
     column += 1
     if column > 4:
         row += 1
-        row = 1
+        column = 1
 
     os.remove("./cards/" + i[0]+".png")
 
