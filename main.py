@@ -35,52 +35,99 @@ rotate_angle_per_frame = 1
 fps = 60
 
 # Button Click Functions
-happy_state = 1
+happy_state = 0
+confused_state = 0
+sad_state = 0
+star_state = 0
+angry_state = 0
+
+
 def happy_button_clicked(event):
-    global happy_state, selected_mood
-    print("Button clicked: 1, State: ",happy_state)
+    global happy_state,confused_state,sad_state,star_state,angry_state, selected_mood
+    print("Button clicked: 1")
     if happy_state == 0:
         happy_state = 1
+        confused_state = 0
+        sad_state = 0
+        star_state = 0
+        angry_state = 0
+
     else:
         happy_state = 0
+        confused_state = 0
+        sad_state = 0
+        star_state = 0
+        angry_state = 0
     selected_mood = "happy"
 
-confused_state = 0
+
 def confused_button_clicked(event):
-    global confused_state, selected_mood
+    global happy_state,confused_state,sad_state,star_state,angry_state, selected_mood
     if confused_state == 0:
+        happy_state = 0
         confused_state = 1
+        sad_state = 0
+        star_state = 0
+        angry_state = 0
     else:
+        happy_state = 0
         confused_state = 0
-    print("Button clicked: 2, State: ",confused_state)
+        sad_state = 0
+        star_state = 0
+        angry_state = 0
+    print("Button clicked: 2")
     selected_mood = "confused"
 
-sad_state = 0
+
 def sad_button_clicked(event):
-    global sad_state, selected_mood
+    global happy_state,confused_state,sad_state,star_state,angry_state, selected_mood
     if sad_state == 0:
+        happy_state = 0
+        confused_state = 0
         sad_state = 1
+        star_state = 0
+        angry_state = 0
     else:
+        happy_state = 0
+        confused_state = 0
         sad_state = 0
-    print("Button clicked: 3, State: ",sad_state)
+        star_state = 0
+        angry_state = 0
+    print("Button clicked: 3")
     selected_mood = "sad"
 
-star_state = 0
+
 def star_button_clicked(event):
-    global star_state, selected_mood
+    global happy_state,confused_state,sad_state,star_state,angry_state, selected_mood
     if star_state == 0:
+        happy_state = 0
+        confused_state = 0
+        sad_state = 0
         star_state = 1
+        angry_state = 0
     else:
+        happy_state = 0
+        confused_state = 0
+        sad_state = 0
         star_state = 0
-    print("Button clicked: 4, State: ",star_state)
+        angry_state = 0
+    print("Button clicked: 4")
     selected_mood = "star"
 
-angry_state = 0
+
 def angry_button_clicked(event):
-    global angry_state, selected_mood
+    global happy_state,confused_state,sad_state,star_state,angry_state, selected_mood
     if angry_state == 0:
+        happy_state = 0
+        confused_state = 0
+        sad_state = 0
+        star_state = 0
         angry_state = 1
     else:
+        happy_state = 0
+        confused_state = 0
+        sad_state = 0
+        star_state = 0
         angry_state = 0
     print("Button clicked: 5, State: ",angry_state)
     selected_mood = "angry"
@@ -127,18 +174,6 @@ crop_img = seed_img.crop((250, 250, 1250, 1250)) # configured for 1500x1500 seed
 
 final_frame=ImageTk.PhotoImage(crop_img)
 
-# --------------------------------------------------------------------------
-# frame = Frame(root, width=800, height=600, background="#3f3f3f", padx=30, pady=50)
-# frame.pack()
-# frame.place(anchor='center', relx=0.5, rely=0.25)
-
-# label2 = Label(frame, text="How was your day?",background="#3f3f3f", font="havletica 20", foreground="white", padx=20, pady=20)
-# label2.pack()
-
-# submit_button = Button(frame, text="Submit", padx=40, pady=8, font="havletica 11", background="#255EC9", foreground="white")
-
-# root.wm_attributes('-transparentcolor', '#3f3f3f')
-
 # Emoji images
 happy_emoji = ImageTk.PhotoImage(Image.open(f"./src/happy.png"))
 happy_emoji_big = ImageTk.PhotoImage(Image.open(f"./src/happy_big.png"))
@@ -180,20 +215,6 @@ def move():
     else:
         happy_button = canvas.create_image(left_mar, 225, image=happy_emoji_big)
 
-        # canvas.delete(star_button)
-        # canvas.delete(sad_button)
-        # canvas.delete(confused_button)
-        # canvas.delete(angry_button)
-
-        # star_button = canvas.create_image(left_mar+75, 225, image=star_emoji)
-        # sad_button = canvas.create_image(left_mar+150, 225, image=sad_emoji)
-        # confused_button = canvas.create_image(left_mar+225, 225, image=confused_emoji)
-        # angry_button = canvas.create_image(left_mar+300, 225, image=angry_emoji)
-
-        # star_state = 0
-        # sad_state = 0
-        # confused_state = 0
-        # angry_state = 0
     canvas.tag_bind(happy_button, "<Button-1>", happy_button_clicked)
 
     if star_state == 0:
@@ -201,19 +222,6 @@ def move():
     else:
         star_button = canvas.create_image(left_mar+75, 225, image=star_emoji_big)
 
-        # canvas.delete(happy_button)
-        # canvas.delete(sad_button)
-        # canvas.delete(confused_button)
-        # canvas.delete(angry_button)
-
-        # sad_button = canvas.create_image(left_mar+150, 225, image=sad_emoji)
-        # confused_button = canvas.create_image(left_mar+225, 225, image=confused_emoji)
-        # angry_button = canvas.create_image(left_mar+300, 225, image=angry_emoji)
-        # happy_button = canvas.create_image(left_mar, 225, image=happy_emoji)
-        # angry_state = 0
-        # sad_state = 0
-        # confused_state = 0
-        # happy_state = 0
     canvas.tag_bind(star_button, "<Button-1>", star_button_clicked)
 
     if sad_state == 0:
@@ -221,19 +229,6 @@ def move():
     else:
         sad_button = canvas.create_image(left_mar+150, 225, image=sad_emoji_big)
 
-        # canvas.delete(star_button)
-        # canvas.delete(happy_button)
-        # canvas.delete(confused_button)
-        # canvas.delete(angry_button)
-
-        # happy_button = canvas.create_image(left_mar, 225, image=happy_emoji)
-        # star_button = canvas.create_image(left_mar+75, 225, image=star_emoji)
-        # confused_button = canvas.create_image(left_mar+225, 225, image=confused_emoji)
-        # angry_button = canvas.create_image(left_mar+300, 225, image=angry_emoji)
-        # star_state = 0
-        # angry_state = 0
-        # confused_state = 0
-        # happy_state = 0
     canvas.tag_bind(sad_button, "<Button-1>", sad_button_clicked)
 
     if confused_state == 0:
@@ -241,19 +236,6 @@ def move():
     else:
         confused_button = canvas.create_image(left_mar+225, 225, image=confused_emoji_big)
 
-        # canvas.delete(star_button)
-        # canvas.delete(sad_button)
-        # canvas.delete(happy_button)
-        # canvas.delete(angry_button)
-        
-        # happy_button = canvas.create_image(left_mar, 225, image=happy_emoji)
-        # star_button = canvas.create_image(left_mar+75, 225, image=star_emoji)
-        # sad_button = canvas.create_image(left_mar+150, 225, image=sad_emoji)
-        # angry_button = canvas.create_image(left_mar+300, 225, image=angry_emoji)
-        # star_state = 0
-        # sad_state = 0
-        # angry_state = 0
-        # happy_state = 0
     canvas.tag_bind(confused_button, "<Button-1>", confused_button_clicked)
 
     if angry_state == 0:
@@ -261,27 +243,11 @@ def move():
     else:
         angry_button = canvas.create_image(left_mar+300, 225, image=angry_emoji_big)
 
-        # canvas.delete(star_button)
-        # canvas.delete(sad_button)
-        # canvas.delete(confused_button)
-        # canvas.delete(happy_button)
-
-        # happy_button = canvas.create_image(left_mar, 225, image=happy_emoji)
-        # star_button = canvas.create_image(left_mar+75, 225, image=star_emoji)
-        # sad_button = canvas.create_image(left_mar+150, 225, image=sad_emoji)
-        # confused_button = canvas.create_image(left_mar+225, 225, image=confused_emoji)
-
-        # star_state =0
-        # sad_state = 0
-        # confused_state = 0
-        # happy_state = 0
     canvas.tag_bind(angry_button, "<Button-1>", angry_button_clicked)
     
     cal_button = canvas.create_image(40, 40, image=calendar_icon)
     canvas.tag_bind(cal_button, "<Button-1>", cal_icon_click)
     # submit_button = canvas.create_text(550, 350, text="Submit", fill="green",)
-
-    
 
     frame_count+=1
     root.after(int(1000/fps), move)
