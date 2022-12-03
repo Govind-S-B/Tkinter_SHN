@@ -10,9 +10,11 @@ root.geometry("1000x600")
 root.minsize(1000, 600)
 root.maxsize(1000, 600)
 
+
 def prevPage(event):
     root.destroy()
     import main
+
 
 font1 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 20)
 font2 = ImageFont.truetype("./src/Uni Sans Heavy.otf", 15)
@@ -21,7 +23,7 @@ return_img = ImageTk.PhotoImage(Image.open(f"./src/return.png"))
 canvas = Canvas(root, width=600, height=400, bg='white')
 canvas.pack(anchor=tk.CENTER, expand=True)
 
-canvas.create_image(30, 30, image = return_img)
+canvas.create_image(30, 30, image=return_img)
 canvas.tag_bind(return_img, "<Button-1>", prevPage)
 
 conn = sq.connect('report.db')
