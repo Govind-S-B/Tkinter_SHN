@@ -235,15 +235,15 @@ def move():
     canvas.tag_bind(cal_button, "<Button-1>", cal_icon_click)
     # submit_button = canvas.create_text(550, 350, text="Submit", fill="green",)
 
-    test = canvas.create_image(500, 280, image=input_bg)
+    test = canvas.create_image(500, 290, image=input_bg)
 
     frame_count+=1
     root.after(int(1000/fps), move)
 
 string = StringVar()
 string.set('Enter input')
-e1 = Entry(canvas, background="white", borderwidth=3, textvariable=string, width=38, bd=0, font="havletica 12")
-canvas.create_window(500, 280, window=e1)
+e1 = Entry(canvas, background="white", borderwidth=3, textvariable=string, width=20, bd=0, font="havletica 12")
+canvas.create_window(500, 290, window=e1)
 
 # Create style Object
 style = ttk.Style()
@@ -253,7 +253,7 @@ style.map('TButton', foreground = [('active', '!disabled', 'green')], background
 
 
 btn = Button(root, text='Submit', width=10, height=1, font="havletica 11", background="#255EC9", foreground="white" ,command=submit)
-btn.place(x=450, y=350)
+btn.place(x=450, y=360)
 # btn.bind("<Button-1>", submit)
 
 # cal_button = Button(root, image=calendar_icon, command=cal_icon_click)
