@@ -129,29 +129,18 @@ def angry_button_clicked(event):
         sad_state = 0
         star_state = 0
         angry_state = 0
-    print("Button clicked: 5, State: ",angry_state)
+    print("Button clicked: 5")
     selected_mood = "angry"
 
 def submit():
     global description, selected_mood
     description = e1.get()
+    print(selected_mood)
+    print(description)
     today = date.today()
     print(today)
-    try:
-        print(selected_mood)
-    except NameError:
-        print("Select the mood")
-        return
-    if description == "":
-        print("Write the description")
-        return
-    print(description)
-    try:
-        conn.execute(f"INSERT INTO REPORT VALUES ('{today}', '{description}', '{selected_mood}');")
-    except sq.IntegrityError:
-        conn.execute(f"UPDATE REPORT SET DESCRIPTION = '{description}', MOOD = '{selected_mood}' WHERE DATE = '{today}';")
+    conn.execute(f"INSERT INTO REPORT VALUES ('{today}', '{description}', '{selected_mood}');")
     conn.commit()
-    print("Inserted to db")
 
 def cal_icon_click(event):
     root.destroy()
@@ -210,7 +199,7 @@ def move():
 
     # Emoji Buttons
     left_mar = 350
-    if happy_state == 1:
+    if happy_state == 0:
         happy_button = canvas.create_image(left_mar, 225, image=happy_emoji)
     else:
         happy_button = canvas.create_image(left_mar, 225, image=happy_emoji_big)
