@@ -144,12 +144,7 @@ def submit():
 
 def cal_icon_click(event):
     root.destroy()
-    import page2test
-
-## to put inside 2nd page py file
-# def prevPage():
-#     root.destroy()
-#     import page1
+    import page2
 
 num = random.randint(1,3)
 print(num)
